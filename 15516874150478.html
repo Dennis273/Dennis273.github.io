@@ -89,23 +89,31 @@
        
 
  <script type="text/javascript">
-  $(function(){
+  $(function () {
     $('#menu_item_index').addClass('is_active');
   });
+  (function (d) {
+    var config = {
+      kitId: 'vys7tve',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
 </script>
 <div class="row">
   <div class="large-8 medium-8 columns">
-      <div class="markdown-body article-wrap">
-       <div class="article">
-          
-          <h1>软件的本质与软件工程科学</h1>
-     
+    <div class="markdown-body article-wrap">
+      <div class="article">
+        
+        <h1>软件的本质与软件工程科学</h1>
+
         <div class="read-more clearfix">
           <span class="date">2019/3/4</span>
 
           
-           
-         
+          
+
           <span class="comments">
             
 
@@ -116,7 +124,7 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h2 id="toc_0">软件工程的本质</h2>
+        <h2 id="toc_0">软件工程的本质</h2>
 
 <p>在 GB/T11457=2006 国家标准中，软件工程被定义为：</p>
 
@@ -186,23 +194,23 @@
 <h2 id="toc_9">软件生命周期</h2>
 
 
-    
+
 
       </div>
 
       <div class="row">
         <div class="large-6 columns">
-        <p class="text-left" style="padding:15px 0px;">
-      
-        </p>
+          <p class="text-left" style="padding:15px 0px;">
+            
+          </p>
         </div>
         <div class="large-6 columns">
-      <p class="text-right" style="padding:15px 0px;">
-      
-          <a  href="15516788004554.html" 
-          title="Next Post: 测试！">测试！ &raquo;</a>
-      
-      </p>
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="15516788004554.html" title="Next Post: 测试！">测试！
+              &raquo;</a>
+            
+          </p>
         </div>
       </div>
       <div class="comments-wrap">
@@ -215,12 +223,7 @@
         </div>
       </div>
     </div><!-- article-wrap -->
-  </div><!-- large 8 -->
-
-
-
-
- <div class="large-4 medium-4 columns">
+  </div><!-- large 8 --> <div class="large-4 medium-4 columns">
   <div class="hide-for-small">
     <div id="sidebar" class="sidebar">
           <div id="site-info" class="site-info">
