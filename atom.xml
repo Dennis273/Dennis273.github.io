@@ -4,7 +4,7 @@
   <title><![CDATA[Dennis' Blog]]></title>
   <link href="https://dennis273.github.io/atom.xml" rel="self"/>
   <link href="https://dennis273.github.io/"/>
-  <updated>2019-03-05T11:21:59+08:00</updated>
+  <updated>2019-03-11T20:12:05+08:00</updated>
   <id>https://dennis273.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -85,7 +85,103 @@
 
 <h3 id="toc_8">解决办法</h3>
 
+<ul>
+<li>开发者能够正确认识计算机软件的内涵</li>
+<li>采用工程项目管理方法实施软件开发的组织管理</li>
+<li>采用成熟的软件开发技术和方法，开发和使用适当的软件工具</li>
+</ul>
+
 <h2 id="toc_9">软件生命周期</h2>
+
+<p>软件生命周期指的是软件从产生直至成熟的全部过程。我们可以通过软件生命周期的管理来明确开发流程中的的阶段性任务。</p>
+
+<p>软件生命周期的六个阶段：</p>
+
+<ul>
+<li>可行性分析与计划阶段</li>
+<li>需求分析阶段</li>
+<li>设计阶段</li>
+<li>实现阶段</li>
+<li>测试阶段</li>
+<li>运行与维护阶段</li>
+</ul>
+
+<h2 id="toc_10">SWEBoK 的 15 个知识域</h2>
+
+<h3 id="toc_11">Software Requirements</h3>
+
+<p>软件需求：软件需求包括对需求的提出、交涉、分析、规划以及验证。如果软件需求分析环节没有正确的进行，将会导致软件较为脆弱。</p>
+
+<h3 id="toc_12">Software Design</h3>
+
+<p>软件设计：软件设计包括对软件架构、组件、接口以及其他系统的组成部分的定义。软件设计时软件生命周期的一部分。当我们完成需求分析后，需要对软件内部结构以及行为进行一个描述以作为之后开发的根据。</p>
+
+<h3 id="toc_13">Software Construction</h3>
+
+<p>软件构建：该部分是软件的实现部分。包含对软件的详细设计、编码、单元测试、集成测试、调试以及验证。</p>
+
+<h3 id="toc_14">Software Testing</h3>
+
+<p>软件测试：软件测试是对软件质量的评估，通过评估结果我们可以衡量软件的缺陷从而提升软件质量。其包含有限的测试案例以动态地对软件行为进行验证。</p>
+
+<h3 id="toc_15">Software Maintenance</h3>
+
+<p>软件维护：软件维护指的是对现有软件进行改善，或者进行修改以适应不同的工作环境，同时还包含对错误的修正。</p>
+
+<h3 id="toc_16">Software Configuration Management</h3>
+
+<p>软件配置管理：软件配置管理指的是对包括硬件、固件一集软件的整体配置。也可以被认为是用于某些目的而搭建的特定版本的硬件、固件一集软件的组合。</p>
+
+<h3 id="toc_17">Software Engineering Management</h3>
+
+<p>软件工程管理：该环节包括对软件开发的计划、协调、度量、报告以及控制，并一次来确保软件开发以及维护的过程是有秩序的、系统的、而且有质量保证。</p>
+
+<h3 id="toc_18">Software Engineering Process</h3>
+
+<p>软件工程实施：软件工程实施包含了对软件生命周期的定义、实现、评估、度量、管理以及改善。</p>
+
+<h3 id="toc_19">Software Engineering Models and Methods</h3>
+
+<p>软件工程模型与方法：其强调了再不同软件生命周期中共同成立的方法，包括对模型搭建的一些原则、对模型的分析方法等。</p>
+
+<h3 id="toc_20">Software Quality</h3>
+
+<p>软件质量：其包含了对软件工程文化、软件质量属性、质检的价值以及成本、软件质量的改善等。</p>
+
+<h3 id="toc_21">Software Engineering Professional Practice</h3>
+
+<p>软件开发专业实践：其包含了一些软件工程师必须掌握的知识、技巧以及态度。这些可以帮助我们进行专业的、负责任的软件开发。</p>
+
+<h3 id="toc_22">Software Engineering Economics</h3>
+
+<p>软件工程经济：包含对关于商业效果以及技术上的决策。涵盖软件工程经济（提案、现金流、时间成本等）。</p>
+
+<h3 id="toc_23">Computing Foundations</h3>
+
+<p>计算基础：计算背景的基础知识，包含解决问题的技巧、抽象、算法以及复杂度、编程基础、并行与分布式基础、计算机架构、操作系统、计算机网络。</p>
+
+<h3 id="toc_24">Mathematical Foundations</h3>
+
+<p>数学基础：数学基础包括集合、关系、函数。也包括逻辑、证明技巧、图与数、离散概率、语法、有限自动机、数论。</p>
+
+<h3 id="toc_25">Engineering Foundations</h3>
+
+<p>工程基础：工程基础包括：实践方法与实验技巧、数据分度量、工程设计、模拟、建模等。</p>
+
+<h2 id="toc_26">简单解释 CMMI 的五个级别</h2>
+
+<ul>
+<li>Level 1: Initial，不可预计的、自发的、不受控的生成模式；</li>
+<li>Level 2: Managed，大多数是自发的，有项目基础的生产模式；</li>
+<li>Level 3: Defined，自主的、有组织基础的生产模式；</li>
+<li>Level 4: Quantitatively Managed，受控的、可度量的生产模式；</li>
+<li>Level 5: Optimizing，专注于改善的生产模式。</li>
+</ul>
+
+<h2 id="toc_27">用自己语言简述 SWEBok 或 CMMI</h2>
+
+<p>SWEBoK 将软件开发所需要的只是分为了两大部分：软件工程实践以及教育需求。软件工程实践中的所需要的各种知识，包括软件开发生命周期，软件工程管理。教育需求则包含了数学、计算机以及工程基础。<br/>
+每一个知识领域由介绍、描述性的主题以及次主题、推荐阅读等部分组成。附录中提供了一些常见标准。</p>
 
 ]]></content>
   </entry>
