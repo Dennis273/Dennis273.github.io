@@ -76,6 +76,8 @@
 
     <li><label>Categories</label></li>
 
+        
+            <li><a href="%E4%BD%9C%E4%B8%9A.html">作业</a></li>
          
 
       </ul>
@@ -124,7 +126,47 @@
       </div><!-- article -->
 
       <div class="article-content">
-        
+        <p>代码块测试</p>
+
+<pre class="line-numbers"><code class="language-javascript">/**
+ * Sets a subset of the state. Always use this to mutate
+ * state. You should treat `this.state` as immutable.
+ *
+ * There is no guarantee that `this.state` will be immediately updated, so
+ * accessing `this.state` after calling this method may return the old value.
+ *
+ * There is no guarantee that calls to `setState` will run synchronously,
+ * as they may eventually be batched together.  You can provide an optional
+ * callback that will be executed when the call to setState is actually
+ * completed.
+ *
+ * When a function is provided to setState, it will be called at some point in
+ * the future (not synchronously). It will be called with the up to date
+ * component arguments (state, props, context). These values can be different
+ * from this.* because your function may be called after receiveProps but before
+ * shouldComponentUpdate, and this new state, props, and context will not yet be
+ * assigned to this.
+ *
+ * @param {object|function} partialState Next partial state or function to
+ *        produce next partial state to be merged with current state.
+ * @param {?function} callback Called after state is updated.
+ * @final
+ * @protected
+ */
+Component.prototype.setState = function(partialState, callback) {
+  invariant(
+    typeof partialState === &#39;object&#39; ||
+      typeof partialState === &#39;function&#39; ||
+      partialState == null,
+    &#39;setState(...): takes an object of state variables to update or a &#39; +
+      &#39;function which returns an object of state variables.&#39;,
+  );
+  this.updater.enqueueSetState(this, partialState, callback, &#39;setState&#39;);
+};
+</code></pre>
+
+<pre class="line-numbers"><code class="language-text"></code></pre>
+
 
 
 
@@ -188,6 +230,8 @@
                 <div class="side-content">
 
       	<p class="cat-list">
+        
+            <a href="%E4%BD%9C%E4%B8%9A.html"><strong>作业</strong></a>
          
         </p>
 
@@ -202,6 +246,12 @@
                 <div class="side-content">
                 <ul class="posts-list">
 	      
+		      
+			      <li class="post">
+			        <a href="15526380126400.html">软件项目过程模型与规划</a>
+			      </li>
+		     
+		  
 		      
 			      <li class="post">
 			        <a href="15524421434659.html">软件项目与知识团队管理基础</a>
