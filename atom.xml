@@ -4,7 +4,7 @@
   <title><![CDATA[Dennis' Blog]]></title>
   <link href="https://dennis273.github.io/atom.xml" rel="self"/>
   <link href="https://dennis273.github.io/"/>
-  <updated>2019-03-25T11:20:19+08:00</updated>
+  <updated>2019-04-13T11:08:38+08:00</updated>
   <id>https://dennis273.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -14,9 +14,9 @@
   
   <entry>
     <title type="html"><![CDATA[软件项目过程模型与规划]]></title>
-    <link href="https://dennis273.github.io/15526380126400.html"/>
+    <link href="https://dennis273.github.io/week3.html"/>
     <updated>2019-03-15T16:20:12+08:00</updated>
-    <id>https://dennis273.github.io/15526380126400.html</id>
+    <id>https://dennis273.github.io/week3.html</id>
     <content type="html"><![CDATA[
 <h2 id="toc_0">简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点</h2>
 
@@ -82,7 +82,18 @@
 <li>风险驱动</li>
 </ul>
 
+<p>统一过程是面向对象的一种方法。</p>
+
 <h2 id="toc_4">简述统一过程四个阶段的划分准则是什么？每个阶段关键的里程碑是什么？</h2>
+
+<p>划分准则是每个阶段的任务。里程碑是每个阶段的任务的验收。</p>
+
+<ul>
+<li>初始阶段：生命周期的目标</li>
+<li>细化阶段：生命周期的结构</li>
+<li>构建阶段：初始运作能力</li>
+<li>交付阶段：产品发布</li>
+</ul>
 
 <h2 id="toc_5">软件企业为什么能按固定节奏生产、固定周期发布软件产品？它给企业项目管理带来哪些好处？</h2>
 
@@ -357,8 +368,6 @@ Component.prototype.setState = function(partialState, callback) {
   this.updater.enqueueSetState(this, partialState, callback, &#39;setState&#39;);
 };
 </code></pre>
-
-<pre class="line-numbers"><code class="language-text"></code></pre>
 
 ]]></content>
   </entry>
