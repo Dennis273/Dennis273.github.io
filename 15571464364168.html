@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Archives - Dennis' Blog
+  领域建模 - 对象状态 - Dennis' Blog
   
   </title>
   
@@ -91,126 +91,88 @@
        
 
  <script type="text/javascript">
-  $(function(){
-    $('#menu_item_archives').addClass('is_active');
+  $(function () {
+    $('#menu_item_index').addClass('is_active');
   });
+  (function (d) {
+    var config = {
+      kitId: 'vys7tve',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
 </script>
 <div class="row">
   <div class="large-8 medium-8 columns">
-    <div id="archives-page-wrap">
-        <h1>Archives</h1>
-        <div class="markdown-body archives-wrap">
-          
-             
-                <h1>2019</h1>
-            
-            <div class="article">
-              <a class="clearlink" href="15571464364168.html">
-                <h1>领域建模 - 对象状态</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2019/5/6</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='%E4%BD%9C%E4%B8%9A.html'>作业</a></span>
-                 
-              </div>
-            </div><!-- article -->
+    <div class="markdown-body article-wrap">
+      <div class="article">
+        
+        <h1>领域建模 - 对象状态</h1>
 
-          
-            
-            <div class="article">
-              <a class="clearlink" href="swsad-week7.html">
-                <h1>用例建模作业</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2019/5/6</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='%E4%BD%9C%E4%B8%9A.html'>作业</a></span>
-                 
-              </div>
-            </div><!-- article -->
+        <div class="read-more clearfix">
+          <span class="date">2019/5/6</span>
 
+          <span>posted in&nbsp;</span> 
           
-            
-            <div class="article">
-              <a class="clearlink" href="swsad-week6.html">
-                <h1>用例建模</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2019/4/13</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='%E4%BD%9C%E4%B8%9A.html'>作业</a></span>
-                 
-              </div>
-            </div><!-- article -->
-
+          <span class="posted-in"><a href='%E4%BD%9C%E4%B8%9A.html'>作业</a></span>
           
-            
-            <div class="article">
-              <a class="clearlink" href="week3.html">
-                <h1>软件项目过程模型与规划</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2019/3/15</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='%E4%BD%9C%E4%B8%9A.html'>作业</a></span>
-                 
-              </div>
-            </div><!-- article -->
 
-          
+          <span class="comments">
             
-            <div class="article">
-              <a class="clearlink" href="15524421434659.html">
-                <h1>软件项目与知识团队管理基础</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2019/3/13</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='%E4%BD%9C%E4%B8%9A.html'>作业</a></span>
-                 
-              </div>
-            </div><!-- article -->
 
-          
             
-            <div class="article">
-              <a class="clearlink" href="15516874150478.html">
-                <h1>软件的本质与软件工程科学</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2019/3/4</span>
-                <span>posted in&nbsp;</span> 
-                
-                    <span class="posted-in"><a href='%E4%BD%9C%E4%B8%9A.html'>作业</a></span>
-                 
-              </div>
-            </div><!-- article -->
+          </span>
 
-          
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+        <h2 id="toc_0">1</h2>
+
+<blockquote>
+<p>使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键</p>
+</blockquote>
+
+<h2 id="toc_1">2</h2>
+
+<blockquote>
+<p>使用 UML State Model，对每个订单对象生命周期建模<br/>
+建模对象： 参考 Asg_RH 文档， 对 Reservation/Order 对象建模。<br/>
+建模要求： 参考练习不能提供足够信息帮助你对订单对象建模，请参考现在 定旅馆 的旅游网站，尽可能分析围绕订单发生的各种情况，直到订单通过销售事件（柜台销售）结束订单。</p>
+</blockquote>
+
+
+
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
             
-            <div class="article">
-              <a class="clearlink" href="15516788004554.html">
-                <h1>测试！</h1>
-              </a>
-              <div class="read-more clearfix">
-                <span class="date">2019/3/4</span>
-                
-                 
-              </div>
-            </div><!-- article -->
-
-           
+          </p>
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="swsad-week7.html" title="Next Post: 用例建模作业">用例建模作业
+              &raquo;</a>
+            
+          </p>
         </div>
       </div>
-  </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
 
- <div class="large-4 medium-4 columns">
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 --> <div class="large-4 medium-4 columns">
   <div class="hide-for-small">
     <div id="sidebar" class="sidebar">
           <div id="site-info" class="site-info">
