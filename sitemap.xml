@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
   <loc>https://dennis273.github.io/</loc>
-  <lastmod>2019-05-06T22:15:10+08:00</lastmod>
+  <lastmod>2019-06-20T00:16:43+08:00</lastmod>
+</url>
+
+<url>
+  <loc>https://dennis273.github.io/deploy-using-google-app-engine.html</loc>
+  <lastmod>2019-06-18T21:39:52+08:00</lastmod>
 </url>
 
 <url>

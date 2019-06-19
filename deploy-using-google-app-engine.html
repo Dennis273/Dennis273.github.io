@@ -1,0 +1,514 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  使用 Google App Engine 部署 Web 应用 - Dennis' Blog
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="Dennis' Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:dennis273.github.io ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; Dennis' Blog</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">Home</a></li>
+        
+        <li><a target="_self" href="archives.html">Archives</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="%E4%BD%9C%E4%B8%9A.html">作业</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function () {
+    $('#menu_item_index').addClass('is_active');
+  });
+  (function (d) {
+    var config = {
+      kitId: 'vys7tve',
+      scriptTimeout: 3000,
+      async: true
+    },
+      h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+  })(document);
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+    <div class="markdown-body article-wrap">
+      <div class="article">
+        
+        <h1>使用 Google App Engine 部署 Web 应用</h1>
+
+        <div class="read-more clearfix">
+          <span class="date">2019/6/18</span>
+
+          
+          
+
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+        <h2 id="toc_0">简介</h2>
+
+<h3 id="toc_1">Google App Engine</h3>
+
+<p><a href="https://cloud.google.com/appengine/">Google App Engine</a> 是 Google Cloud Platform 上的一个全托管的 Serverless 应用。相对于 Google Compute Engine 所提供的高性能虚拟机服务，使用 GAE 可以使开发者专注于应用开发，而不需关注与应用运行环境相关的配置、运维等工作。GAE 目前提供了多种语言的环境，包括 Go、PHP、Node.js、Java 等，同时也提供了标准环境以及柔性环境以应对不同的扩容策略。本文中将使用 GAE 的 柔性环境搭建 Node.js 的 Web 应用。</p>
+
+<p><img src="media/15608651922143/15609323734695.jpg" alt="Goole App Engine"/></p>
+
+<h3 id="toc_2">项目结构</h3>
+
+<p>本次用于部署的项目是前后端分离的 Web 应用。前端使用的是 React，后端部分使用了 Express + MongoDB。MongDB 部分直接使用了 MongoDB Atlas 的免费集群，虽然有一定的限制但是作为简单的项目来说足够了。由于本文重点不在于搭建 Web 应用故不会详细解释项目具体实现。</p>
+
+<h2 id="toc_3">部署至 GAE</h2>
+
+<p>要使用 Google App Engine 首先需要注册 Google Cloud Platform 账户，在使用 GCP 服务时会根据产生的流量以及实例运行时间产生相应费用。GCP 有提供有效期一年的 300 USD 赠金，使用信用卡注册账户后可以自动获得（会产生相应税费）。</p>
+
+<h3 id="toc_4">准备工作</h3>
+
+<h4 id="toc_5">安装 Cloud SDK</h4>
+
+<p>首先要先在开发机器上安装 Cloud SDK，可以在<a href="https://cloud.google.com/sdk/docs">此处</a>看到不同平台的安装文档。本文以 macOS 10.14 作为示例。<br/>
+<img src="media/15608651922143/15609345174729.jpg" alt="Cloud SDK 安装文档"/></p>
+
+<pre class="line-numbers"><code class="language-bash"># 下载
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-245.0.0-darwin-x86_64.tar.gz
+
+# 解压
+tar zxvf ./google-cloud-sdk-245.0.0-darwin-x86_64.tar.gz
+
+# 安装
+cd google-cloud-sdk
+chmod 755 ./install.sh
+./install.sh
+
+# 重新加载 shell
+source ~/.zshrc
+</code></pre>
+
+<p>至此 Cloud SDK 就已经成功安装了！其后在正式运行和部署之前我们还需要新建项目并进行一些配置。</p>
+
+<h4 id="toc_6">建立项目</h4>
+
+<p>首先使用 Cloud SDK 在 shell 中登录 GCP 账户，SDK 会通过 Web 界面鉴权。</p>
+
+<pre class="line-numbers"><code class="language-bash">// 登录
+gcloud auth login
+</code></pre>
+
+<p><img src="media/15608651922143/15609360094468.jpg" alt="Cloud SDK 登录"/></p>
+
+<p>成功登录后就可以开始创建新的项目了。</p>
+
+<pre class="line-numbers"><code class="language-bash"># 创建项目并设置为默认项目
+gcloud projects create [YOUR_PROJECT_NAME] --set-as-default
+# 显示项目详情
+gcloud projects describe [YOUR_PROJECT_NAME]
+# 在项目中新建 App Engine 应用
+gcloud app create --project=[YOUR_PROJECT_NAME]
+</code></pre>
+
+<p><img src="media/15608651922143/15609371556538.jpg" alt="选择区域"/><br/>
+这里要选择 App Engine 部署的区域，此处我们选择 <code>[1]</code> (香港)。具体区域信息可以在这里<a href="https://cloud.google.com/compute/docs/regions-zones/">Google Cloud 区域和地区文档</a> 查看。</p>
+
+<p>然后要在 Web 端的控制台为对应项目开启结算，链接为<a href="https://console.cloud.google.com/projectselector/billing?lang=nodejs&amp;st=true&amp;hl=zh-CN&amp;_ga=2.41128225.-247570783.1560860681">启用结算</a>。<br/>
+<img src="media/15608651922143/15609385301227.jpg" alt="选择项目"/><br/>
+<img src="media/15608651922143/15609409672845.jpg" alt="设置结算账号"/><br/>
+这样就完成了项目的初始化，可以开始将我们的程序部署至 App Engine 了</p>
+
+<p>App Engine 支持同一 App 包含多个 Service。在本项目中有前端以及 API 服务器两个 Service。</p>
+
+<h4 id="toc_7">api-server 服务</h4>
+
+<h5 id="toc_8"><code>app.yaml</code></h5>
+
+<p>要将应用部署至 GAE，首先配置  <code>app.yaml</code> 文件。<br/>
+该配置文件中可以配置关于 GAE App 的很多属性，包括网络、资源、实例自检、扩容策略以及环境变量等。具体的配置方法可以在 <a href="https://cloud.google.com/appengine/docs/flexible/nodejs/reference/app-yaml">app.yaml 配置文件</a>文档中查看。服务将会用到<code>runtime</code>、<code>service</code> 以及 <code>env_variables</code> 三个属性。</p>
+
+<ul>
+<li><code>runtime</code>：应用的运行环境，如 <code>nodejs&lt;version&gt;</code>、<code>python&lt;version&gt;</code>、<code>php&lt;version&gt;</code> 等；</li>
+<li><code>service</code>：服务的名称；</li>
+<li><code>env_variables</code>：环境变量。</li>
+</ul>
+
+<p>在 <code>api-server</code> 中我将使用 Node.js LTS 版本即 <code>nodejs10</code>，环境变量我需要用于生成 JWT Token 的密钥 <code>JWT_TOKEN</code> 以及用于连接数据库等 <code>MONGO_DB_URL</code>。<br/>
+配置实例如下：</p>
+
+<pre class="line-numbers"><code class="language-yaml">runtime: nodejs10
+service: api-server
+env_variables:
+  JWT_KEY: [JWT_KEY]
+  MONGO_DB_URL: [DATABASE_URL]
+</code></pre>
+
+<h5 id="toc_9"><code>package.json</code></h5>
+
+<p>完成之后我们需要检查 <code>package.json</code> 中的 <code>start</code> 脚本。在应用被部署至 GAE 后，将会自动安装所有所有依赖（不包含 <code>devDependencies</code>），并运行 start 脚本。同时 GAE 不能正常运行如 <code>babel-node</code> 以及 <code>nodemon</code> 等程序，所以我们要确保 <code>start</code> 脚本中的内容是通过 <code>node</code> 启动，即内容为 <code>node [APP_ENTRY]</code>。</p>
+
+<h5 id="toc_10"><code>.gcloudignore</code></h5>
+
+<p>在部署应用至 GAE 时，为了避免传输大量文件，我们要将不需要用到的文件以及 <code>node_modules</code> 目录加入至  <code>.gcloudignore</code> 文件</p>
+
+<h5 id="toc_11">部署</h5>
+
+<p>至此我们可以开始将应用部署至 GAE。</p>
+
+<pre class="line-numbers"><code class="language-bash"># 在应用根目录下运行
+gcloud app deploy
+</code></pre>
+
+<p><img src="media/15608651922143/15609432895863.jpg" alt="部署错误"/><br/>
+可以看到我们需要先部署一个 <code>default</code> 的服务才能部署其他服务。此处可以自由选择任意服务进行部署，只需移除 <code>app.yaml</code> 中 <code>service</code> 一项既可以部署为 <code>default</code>。此处我先将 <code>api-server</code> 服务设为 <code>default</code> 后重新运行部署命令即可成功部署。</p>
+
+<h4 id="toc_12">front-end 服务</h4>
+
+<p>本次前端项目是通过 <code>create-react-app</code> 构建的，其可以构建打包出静态文件。我们需要为构建出来的前端静态文件配置路由，除此之外其他配置基本与 <code>api-server</code> 部分相同。</p>
+
+<h5 id="toc_13"><code>app.yaml</code></h5>
+
+<p>由于静态资源文件不需要特定运行环境，所以可以自由选择。在示例中我们继续使用 <code>nodejs10</code>。除此之外路由部分也要在该文件中定义。定义路由时我们使用 <code>handlers</code> 属性。<code>handlers</code> 属性可以配置匹配到对应请求时对行为，具体文档请参考文档<a href="https://cloud.google.com/appengine/docs/standard/nodejs/config/appref#handlers_element">handlers 元素</a>。<br/>
+前端资源目录如下：</p>
+
+<pre class="line-numbers"><code class="language-text">build
+├── index.html
+├── favicon.ico
+└── static
+    ├──  js
+    └── css
+</code></pre>
+
+<p>我们需要对请求 <code>&lt;domain&gt;/</code> 返回 <code>build/index.html</code>、对 <code>&lt;domain&gt;/favicon.ico</code> 返回 <code>build/favicon.ico</code> 、<code>&lt;domain&gt;/static/*</code> 返回 <code>static/*</code>。同时前端作为单页应用也要对其他路由返回 <code>index.html</code> 以防止刷新时返回 404 Not Found。</p>
+
+<p><code>url</code> 字段使用正则表达式对请求路径进行匹配；<code>static_files</code> 字段是对应的文件，需要与 <code>upload</code> 同时使用；<code>static_dir</code> 则是路径对应的目录。</p>
+
+<p>配置完成后的 <code>app.yaml</code> 文件如下：</p>
+
+<pre class="line-numbers"><code class="language-yaml">runtime: nodejs10
+service: front-end
+
+handlers:
+  - url: /
+    static_files: build/index.html
+    upload: build/index.html
+  - url: /static
+    static_dir: build/static
+  - url: /[^/]\.[^/]*$
+    static_dir: build
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
+</code></pre>
+
+<h5 id="toc_14">部署</h5>
+
+<p>配置完 <code>app.yaml</code> 以及 <code>.gcloudignore</code> 后就可以开始部署了，部署流程同 <code>api-server</code>。<br/>
+<img src="media/15608651922143/15609470569455.jpg" alt="front-end 配置成功"/></p>
+
+<h4 id="toc_15">服务管理</h4>
+
+<p>接下来我们需要将不同请求转发给不同 Service 去处理。项目服务如下：</p>
+
+<pre class="line-numbers"><code class="language-text">App 
+├── front-end (&lt;domain&gt;/*)
+└── api-server (&lt;domain&gt;/api/*)
+</code></pre>
+
+<p>要将不同的请求转发至不同 Service，可以为项目配置 <code>dispatch.yaml</code> 文件。该文件包含两种元素：<code>url</code> 以及 <code>service</code>。关于该文件的详细配置可以参考文档 <a href="https://cloud.google.com/appengine/docs/standard/nodejs/reference/dispatch-yaml">dispatch.yaml 配置文件</a>。</p>
+
+<p>配置示例如下：</p>
+
+<pre class="line-numbers"><code class="language-yaml">dispatch:
+  - url: &#39;*/api/*&#39;
+    service: api-server
+  - url: &#39;display-project-1.appspot.com/*&#39;
+    service: front-end
+</code></pre>
+
+<p>配置完成后将路由文件部署至 GAE，此时要注意配置文件中用到的 Service 都必须提前部署至 GAE。</p>
+
+<pre class="line-numbers"><code class="language-bash">gcloud app deploy dispatch.yaml
+</code></pre>
+
+<p><img src="media/15608651922143/15609474151098.jpg" alt="成功部署路由文件"/></p>
+
+<p>然后我们就可以在 GAE 的控制台页面看到各个服务以及对应的路由。<br/>
+<img src="media/15608651922143/15609584339207.jpg" alt="GAE 控制台 - 服务"/><br/>
+至此前后端两个服务以及路由都已经配置完毕了，访问项目分配的域名 [YOUR_PROJECT_ID].appspot.com 就可以进入 Web 应用。<br/>
+<img src="media/15608651922143/15609604876715.jpg" alt="成功进入 Web 应用"/></p>
+
+<h4 id="toc_16">调试</h4>
+
+<p>当然实际开发过程中不可能那么顺利，在我们将应用部署至 GAE 后，有可能会遇到应用没有正常工作的情况。这个时候我们没办法像在开发机器或者虚拟机实例上那样使用各种手段进行调试。GAE 提供了一些途径供我们了解程序运行状况。</p>
+
+<h5 id="toc_17">Stackdriver 日志</h5>
+
+<p>从 Stackdriver 日志页面可以看到程序运行时的各种输出，可以观察到对请求的处理以及各种程序中的各种 log。<br/>
+<img src="media/15608651922143/15609586332973.jpg" alt="Stackdriver 日志"/></p>
+
+<h5 id="toc_18">Stackdriver 错误报告</h5>
+
+<p>在 Stackdriver 错误报告页面可以看到服务运行时所产生的所有错误及其堆栈，并可以设置错误的状态以及配置程序自动重新加载。<br/>
+<img src="media/15608651922143/15609585943343.jpg" alt="Stack Driver 错误报告"/></p>
+
+<h5 id="toc_19">Stackdriver 调试</h5>
+
+<p>在 Stackdriver 调试页面中可以对当前部署的代码进行快照。<br/>
+<img src="media/15608651922143/15609594586086.jpg" alt="Stackdriver 调试"/></p>
+
+<h3 id="toc_20">其他问题</h3>
+
+<h4 id="toc_21">成员权限问题</h4>
+
+<p>在写这篇文章的时候我又重新新建了一个 project 进行部署，在初次 deploy 时遇到了如下权限错误。<br/>
+<img src="media/15608651922143/15609437674373.jpg" alt="权限问题"/><br/>
+时候通过在 IAM 页面删除无权限的成员，然后在重新为其添加 Cloud Build 服务账号角色解决了这个问题。<br/>
+<img src="media/15608651922143/15609598346753.jpg" alt="IAM 和管理"/></p>
+
+<h2 id="toc_22">总结</h2>
+
+<p>应该说 Google App Engine 提供了一个很好的应用部署方案，对于小型应用来说这种无服务器的配置可以减少运维以及部署的各种成本。而在应用需要进行扩容或者迭代更新时，GCP 提供的完整解决方案可以让开发者无缝迭代，也可以逐渐加入其他组件如 Google Cloud Storage，Firebase 等其他 Google 提供的云服务，直至迁移至 Kubernetes。我觉得 GAE 和通过 Docker 进行部署相比起来开发人员要配置的部分更少了，只需要通过简单的步骤就可以将应用部署至生产环境。</p>
+
+<h2 id="toc_23">后记</h2>
+
+<p>这篇文章是在前两天搞定 GAE 以及 Travis CI 的部署之后决定写的。本以为写文章的时候可以很快复现上次的成果，没想到又遇到了一大堆坑。实际上我不太会写文章，每次写的时候不是没东西可写就是感觉像在记流水账，不过这次大概是因为内容很多所以边写边在配置感觉还挺好玩的。其实本来打算一篇文章写完 GAE 和 Travis CI 的结果写不完，下次再来写 Travis CI 和 GAE 的 持续部署好了。或许以后还会用用看 Google Cloud Functions，全面拥抱 Serverless。</p>
+
+
+
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
+            
+          </p>
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="swsad-week9.html" title="Next Post: 领域建模 - 对象状态">领域建模 - 对象状态
+              &raquo;</a>
+            
+          </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 --> <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>Dennis' Blog</h1>
+                <div class="site-des"></div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/Dennis273" title="GitHub">GitHub</a>
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="%E4%BD%9C%E4%B8%9A.html"><strong>作业</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="deploy-using-google-app-engine.html">使用 Google App Engine 部署 Web 应用</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="swsad-week9.html">领域建模 - 对象状态</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="swsad-week7.html">用例建模作业</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="swsad-week6.html">用例建模</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="week3.html">软件项目过程模型与规划</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>
